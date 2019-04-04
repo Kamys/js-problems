@@ -16,7 +16,24 @@
  * @returns {string}
  */
 function decrypt(secret) {
-    return undefined;
+    return secret
+        .split('')
+        .reduce((acc, item) => {
+            const newChar = decryptChar(item);
+            return [...acc, newChar]
+        }, [])
+        .join('')
+}
+
+function decryptChar(char) {
+    if (char === ' ') {
+        return ' '
+    }
+    const charCode = char.charCodeAt(0) + 1;
+    if (charCode >= 123) {
+        return String.fromCharCode(97)
+    }
+    return String.fromCharCode(charCode)
 }
 
 module.exports = decrypt;
