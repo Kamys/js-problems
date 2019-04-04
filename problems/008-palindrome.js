@@ -13,7 +13,17 @@
  * @returns {boolean}
  */
 function isPalindrome(value) {
-    return undefined;
+    const chars = value.split('');
+    const charsReverse = [...chars].reverse();
+    return chars.reduce((acc, item, index) => {
+        if (!acc) {
+            return false
+        }
+
+        return item === charsReverse[index];
+    }, true);
 }
+
+console.log(isPalindrome('true'));
 
 module.exports = isPalindrome;
