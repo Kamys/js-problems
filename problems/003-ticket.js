@@ -14,7 +14,19 @@
  * @returns {boolean}
  */
 function checkTicket(number) {
-    return undefined;
+    const numbers = number.split('').map(item => parseInt(item, 10));
+    const sumFirst = sliceSum(numbers, 0, 3);
+    const sumSecond = sliceSum(numbers, 3);
+    console.log({sumFirst, sumSecond});
+    return sumFirst === sumSecond;
+}
+
+function sum(a, b) {
+    return a + b;
+}
+
+function sliceSum(array, start, end) {
+    return array.slice(start, end).reduce(sum, 0)
 }
 
 module.exports = checkTicket;
