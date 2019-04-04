@@ -4,7 +4,7 @@
  * набравшая больше очков в течение всего матча.
  *
  * Напишите функцию getWinner(points) возвращающую номер победившей команды,
- * либо undefined в случае ничьей.
+ * либо undefined в случае ничьей.pointsText.split('-')
  *
  * Пример:
 
@@ -16,7 +16,26 @@
  * @returns {(number|undefined)}
  */
 function getWinner(points) {
-    return undefined;
+    const result = points
+        .map(pointsText => pointsText
+            .split('-')
+            .map(item => parseInt(item, 10))
+        )
+        .reduce((result, item) => {
+            return (result + item[0]) - item[1]
+        }, 0);
+
+    if (result === 0) {
+        return undefined
+    }
+
+    if (result > 0) {
+        return 1
+    } else {
+        return 2
+    }
 }
+
+getWinner(['23-26', '24-30', '30-27', '35-31']);
 
 module.exports = getWinner;
