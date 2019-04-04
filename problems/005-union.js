@@ -13,7 +13,23 @@
  * @returns {number[]}
  */
 function union(a, b) {
-    return undefined;
+    const result = a
+        .filter(onlyUnique)
+        .reduce((acc, item) => {
+            if (b.includes(item)) {
+                return [...acc, item]
+            }
+
+            return acc
+        }, [])
+        .sort((a, b) => a - b);
+
+
+    return result
+}
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
 }
 
 module.exports = union;
